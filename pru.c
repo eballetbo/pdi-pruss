@@ -31,7 +31,7 @@
 #define SYSCFG	0x26004
 #define GPCFG0	0x26008
 
-volatile register unsigned int __R31;
+volatile register uint32_t __R31;
 
 int main(int argc, const char *argv[]) {
 	int i;
@@ -42,7 +42,7 @@ int main(int argc, const char *argv[]) {
 	 * Shared ram is at address 0x10000.
 	 * See table 4.7 Local Memory Map in page 204 of manual
 	 */
-	unsigned int* shared_ram = (unsigned int *)0x10000;
+	volatile uint32_t* shared_ram = (uint32_t *)0x10000;
 
 	/*
 	 * Enable OCP so we can access the whole memory map for the

@@ -35,6 +35,8 @@ void signal_handler(int signal) {
 
 int main(int argc, const char *argv[]) {
 	int i;
+	void *p;
+	volatile uint32_t *shared_ram;
 	uint8_t dev_id[3];
 
 	/* Listen to SIGINT signals (program termination) */
@@ -44,9 +46,8 @@ int main(int argc, const char *argv[]) {
 	init_pru_program();
 
 	/* Get pointer to shared ram */
-	void* p;
 	prussdrv_map_prumem(PRUSS0_SHARED_DATARAM, &p);
-	unsigned int* shared_ram = (unsigned int*)p;
+	shared_ram = (uint32_t *)p;
 
 	for (i = 0; i < 3 ; i++) {
 		shared_ram[1] = i;
