@@ -1,11 +1,12 @@
 PRU_COMPILER_DIR=./vendors/pru_2.0.0B2
 PRU_C_FLAGS=--silicon_version=2 --hardware_mac=on -i$(PRU_COMPILER_DIR)/include -i$(PRU_COMPILER_DIR)/lib 
 PRU_LD_FLAGS=-llibc.a
-
 CROSS_COMPILE=arm-linux-gnueabihf-
 
-HOST_C_FLAGS += -Wall -g -O2 -mtune=cortex-a8 -march=armv7-a -I/usr/local/include
-HOST_LD_FLAGS += /usr/local/lib/libprussdrv.a -lpthread
+PREFIX?=/usr/local
+
+HOST_C_FLAGS += -Wall -g -O2 -mtune=cortex-a8 -march=armv7-a -I$(PREFIX)/include
+HOST_LD_FLAGS += $(PREFIX)/lib/libprussdrv.a -lpthread
 
 FIND_ADDRESS_COMMAND=`$(PRU_COMPILER_DIR)/bin/dispru pru.elf | grep _c_int00 | cut -f1 -d\  `
 
