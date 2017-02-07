@@ -33,9 +33,12 @@
 
 volatile register uint32_t __R31;
 
+#define BUFSIZE	256
+#define half(x)	((x)/2)
+
 int main(int argc, const char *argv[]) {
 	int i;
-	uint8_t page_buffer[512], dev_id[3];
+	uint8_t page_buffer[BUFSIZE], dev_id[3];
 	unsigned int finish = 0;
 
 	/*
@@ -82,29 +85,31 @@ int main(int argc, const char *argv[]) {
 			xnvm_chip_erase();
 			break;
 		case CMD_READ_FLASH:
-			memset(page_buffer, 0, 512);
+			memset(page_buffer, 0, BUFSIZE);
 
 			/* Initialize the PDI interface */
 			xnvm_init();
-			xnvm_read_memory(XNVM_FLASH_BASE + shared_ram[1], page_buffer, 128);
+			xnvm_read_memory(XNVM_FLASH_BASE + shared_ram[1],
+					 page_buffer, half(BUFSIZE));
 
 			/* Initialize the PDI interface */
 			xnvm_init();
-			xnvm_read_memory(XNVM_FLASH_BASE + shared_ram[1] + 128, &page_buffer[128], 128);
+			xnvm_read_memory(XNVM_FLASH_BASE + shared_ram[1] + half(BUFSIZE),
+					 &page_buffer[half(BUFSIZE)], half(BUFSIZE));
 
 			/* */
 			pdi_deinit();
 
-			for (i = 0; i < 256; i++)
+			for (i = 0; i < BUFSIZE; i++)
 				shared_ram[i + 5] = page_buffer[i];
 			break;
 		case CMD_PROGRAM_FLASH:
-			for (i = 0; i < 256; i++)
+			for (i = 0; i < BUFSIZE; i++)
 				page_buffer[i] = (uint8_t)shared_ram[i + 5];
 
 			/* Initialize the PDI interface */
 			xnvm_init();
-			xnvm_erase_program_flash_page(0x0000 + shared_ram[1], page_buffer, 256);
+			xnvm_erase_program_flash_page(0x0000 + shared_ram[1], page_buffer, BUFSIZE);
 			break;
 		default:
 			break;
