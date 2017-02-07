@@ -34,7 +34,7 @@
 volatile register unsigned int __R31;
 
 int main(int argc, const char *argv[]) {
-	int i, err;
+	int i;
 	uint8_t page_buffer[512], dev_id[3];
 	unsigned int finish = 0;
 
@@ -68,9 +68,9 @@ int main(int argc, const char *argv[]) {
 		case CMD_READ_SIGNATURE:
 			if (shared_ram[1] == 0) {
 				/* Initialize the PDI interface */
-				err = xnvm_init();
+				xnvm_init();
 				/* Read device ID */
-				err = xnvm_read_memory(XNVM_DATA_BASE + NVM_MCU_CONTROL, dev_id, 3);
+				xnvm_read_memory(XNVM_DATA_BASE + NVM_MCU_CONTROL, dev_id, 3);
 				shared_ram[2] = dev_id[0];
 			} else if (shared_ram[1] == 1) {
 				shared_ram[2] = dev_id[1];
@@ -79,18 +79,18 @@ int main(int argc, const char *argv[]) {
 			}
 			break;
 		case CMD_CHIP_ERASE:
-			err = xnvm_chip_erase();
+			xnvm_chip_erase();
 			break;
 		case CMD_READ_FLASH:
 			memset(page_buffer, 0, 512);
 
 			/* Initialize the PDI interface */
-			err = xnvm_init();
-			err = xnvm_read_memory(XNVM_FLASH_BASE + shared_ram[1], page_buffer, 128);
+			xnvm_init();
+			xnvm_read_memory(XNVM_FLASH_BASE + shared_ram[1], page_buffer, 128);
 
 			/* Initialize the PDI interface */
-			err = xnvm_init();
-			err = xnvm_read_memory(XNVM_FLASH_BASE + shared_ram[1] + 128, &page_buffer[128], 128);
+			xnvm_init();
+			xnvm_read_memory(XNVM_FLASH_BASE + shared_ram[1] + 128, &page_buffer[128], 128);
 
 			/* */
 			pdi_deinit();
@@ -103,8 +103,8 @@ int main(int argc, const char *argv[]) {
 				page_buffer[i] = (uint8_t)shared_ram[i + 5];
 
 			/* Initialize the PDI interface */
-			err = xnvm_init();
-			err = xnvm_erase_program_flash_page(0x0000 + shared_ram[1], page_buffer, 256);
+			xnvm_init();
+			xnvm_erase_program_flash_page(0x0000 + shared_ram[1], page_buffer, 256);
 			break;
 		default:
 			break;
