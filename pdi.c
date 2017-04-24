@@ -23,7 +23,7 @@
 #include <prussdrv.h>
 #include <pruss_intc_mapping.h>
 
-#include "beaglepru.h"
+#include "prog.h"
 
 #define PRU_NUM 0
 

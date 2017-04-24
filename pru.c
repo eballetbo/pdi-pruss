@@ -18,7 +18,7 @@
 
 #include "xmega_pdi_nvm.h"
 #include "low_level_pdi.h"
-#include "beaglepru.h"
+#include "prog.h"
 
 #include "atxmega16d4_nvm_regs.h"
 

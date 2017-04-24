@@ -12,8 +12,8 @@
  * published by the Free Software Foundation.
  */
 
-#ifndef BEAGLEPRU_H_INCLUDED
-#define BEAGLEPRU_H_INCLUDED
+#ifndef PROG_H_INCLUDED
+#define PROG_H_INCLUDED
 
 #define CMD_ENTER_PROGMODE	0x10
 #define CMD_LEAVE_PROGMODE	0x11
