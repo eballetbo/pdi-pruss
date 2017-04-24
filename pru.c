@@ -1,8 +1,11 @@
-/*
- * PDI programmer
+/**
+ * PDI programmer.
  *
- * Copyright (c) 2016 Collabora Ltd.
- * Author: Enric Balletbo Serra <enric.balletbo@collabora.cocom>
+ * Copyright (C) 2015-2017 Toby Churchill Ltd.
+ *
+ * Enric Balletbo Serra <enric.balletbo@collabora.com>
+ *
+ * License
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as

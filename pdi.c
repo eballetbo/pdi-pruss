@@ -1,3 +1,17 @@
+/**
+ * PDI main program.
+ *
+ * Copyright (C) 2015-2017 Toby Churchill Ltd.
+ *
+ * Enric Balletbo Serra <enric.balletbo@collabora.com>
+ *
+ * License
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+
 #include <stdio.h>
 #include <pthread.h>
 #include <string.h>

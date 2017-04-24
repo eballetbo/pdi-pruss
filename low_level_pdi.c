@@ -1,13 +1,11 @@
 /**
- * \file
+ * Low level PDI driver.
  *
- * \brief Low level PDI driver
+ * Copyright (C) 2015-2017 Toby Churchill Ltd.
  *
- * Copyright (C) 2015 TobyChurchill Ltd.
+ * Enric Balletbo Serra <enric.balletbo@collabora.com>
  *
- * \author Enric Balletbo Serra <enric.balletbo@collabora.com
- *
- * \page License
+ * License
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
